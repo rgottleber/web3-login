@@ -1,5 +1,6 @@
 <script>
 	import WalletConnect from '$lib/WalletConnect.svelte';
+	import LocalSign from '$lib/LocalSign.svelte';
 	export let web3Props = {
 		provider: null,
 		signer: null,
@@ -9,7 +10,8 @@
 	};
 </script>
 
-<WalletConnect bind:web3Props />
-
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+{#if !web3Props.account}
+	<WalletConnect bind:web3Props />
+{:else}
+	<LocalSign bind:web3Props />
+{/if}

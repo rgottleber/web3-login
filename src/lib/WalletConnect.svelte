@@ -7,8 +7,6 @@
 		chainId: null,
 		contract: null
 	};
-	export let contractAbi;
-	export let contractAddr;
 
 	async function connectWallet() {
 		let provider = new ethers.providers.Web3Provider(window.ethereum, 'any');
@@ -17,7 +15,6 @@
 		const account = await signer.getAddress();
 		const chainId = await signer.getChainId();
 		const contract = '';
-		// const contract = new ethers.Contract(contractAddr, contractAbi.abi, signer);
 		web3Props = { signer, provider, chainId, account };
 		console.log(web3Props);
 	}
@@ -32,9 +29,6 @@
 	}
 </script>
 
-{#if !web3Props.account}
-	<div class="grid h-screen place-items-center">
-		<button class="btn" on:click={connectWallet}>Attach Wallet</button>
-	</div>
-{/if}
-<button on:click={signAndVerify}>Sign</button>
+<div class="grid h-screen place-items-center">
+	<button class="btn" on:click={connectWallet}>Attach Wallet</button>
+</div>

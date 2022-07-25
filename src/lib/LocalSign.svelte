@@ -15,7 +15,8 @@
 	let valid = null;
 	$: address = '';
 	$: step = 0;
-	const expectedAddr = '0x007E2e8D8CF1C50291943a805b7CdAe8ae8EfaaE';
+	let expectedAddr;
+	const notYourAddr = '0x859E2e8D8CF1C50291943a493b7CdAe8ae8EEaa';
 	function nextStep() {
 		step++;
 	}
@@ -57,7 +58,11 @@
 				<p>{web3Props.account}</p>
 				<p>When you sign in, I can see your public address!</p>
 				<h2 class="card-title">The Address I'm expecting</h2>
-				<p>{expectedAddr}</p>
+				<select class="select select-primary w-full max-w-xs" bind:value={expectedAddr}>
+					<option disabled selected>Select Address</option>
+					<option value={web3Props.account}>Your Address</option>
+					<option value={notYourAddr}>Not Your Address</option>
+				</select>
 
 				<div class="card-actions justify-end">
 					<button class="btn btn-primary" on:click={nextStep}>Next</button>

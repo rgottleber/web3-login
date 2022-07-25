@@ -65,7 +65,11 @@
 				</select>
 
 				<div class="card-actions justify-end">
-					<button class="btn btn-primary" on:click={nextStep}>Next</button>
+					<button
+						class="btn btn-primary"
+						on:click={nextStep}
+						disabled={expectedAddr === 'Select Address'}>Next</button
+					>
 				</div>
 			</div>
 		</div>

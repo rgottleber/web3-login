@@ -44,7 +44,6 @@
 	nonce = Math.floor(Math.random() * 1000000);
 </script>
 
-{step}
 <div class="grid place-content-center pt-11">
 	{#if step === 0}
 		<div

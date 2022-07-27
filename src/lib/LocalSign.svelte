@@ -47,7 +47,7 @@
 <div class="grid place-content-center pt-11">
 	{#if step === 0}
 		<div
-			class="card  bg-base-100 shadow-xl"
+			class="card  bg-base-100 shadow-xl max-w-xl"
 			in:fly={{ duration: 200, x: 100 }}
 			out:fly={{ duration: 100, x: -100 }}
 		>
@@ -55,8 +55,14 @@
 			<div class="card-body">
 				<h2 class="card-title">Your Public Address:</h2>
 				<p>{web3Props.account}</p>
-				<p>When you sign in, I can see your public address!</p>
-				<h2 class="card-title">The Address I'm expecting</h2>
+				<p />
+				<p>
+					When you sign in, I can see your public address. Choosing your address will take you
+					through a successful sign in process. Choosing Not Your Address will show you what happens
+					when sign in fails
+				</p>
+				<h2 class="card-title">The Address I'm expecting:</h2>
+				<p>{expectedAddr != 'Select Address' ? expectedAddr : ''}</p>
 				<select class="select select-primary w-full max-w-xs" bind:value={expectedAddr}>
 					<option disabled selected>Select Address</option>
 					<option value={web3Props.account}>Your Address</option>
@@ -74,17 +80,20 @@
 		</div>
 	{:else if step === 1}
 		<div
-			class="card bg-base-100 shadow-xl"
+			class="card bg-base-100 shadow-xl max-w-xl"
 			in:fly={{ delay: 100, duration: 200, x: 100 }}
 			out:fly={{ duration: 100, x: -100 }}
 		>
 			<figure><img src="https://placeimg.com/400/225/arch" alt="Random" /></figure>
 			<div class="card-body">
-				<h2 class="card-title">Your Address:</h2>
-				<p>{web3Props.account}</p>
-				<h2 class="card-title">Random Nonce</h2>
-				<p>{nonce}</p>
-				<p>By signing this one time number you are verifying your identity</p>
+				<h2 class="card-title">Random Message with Nonce</h2>
+				<p>Signing one-time nonce: {nonce}</p>
+				<p>
+					Using your private key, you can sign this random nonce, a one time use number. It will
+					allow you to create a single use signature which can only be created by you! The signature
+					is unique based on your private key and the data passed in. In this case the message
+					above.
+				</p>
 				<div class="card-actions justify-end">
 					<button class="btn btn-secondary" on:click={sign}>Sign</button>
 				</div>
@@ -92,17 +101,18 @@
 		</div>
 	{:else if step === 2}
 		<div
-			class="card bg-base-100 shadow-xl"
+			class="card bg-base-100 shadow-xl max-w-xl"
 			in:fly={{ delay: 100, duration: 200, x: 100 }}
 			out:fly={{ duration: 100, x: -100 }}
 		>
 			<figure><img src="https://placeimg.com/400/225/arch" alt="Random" /></figure>
 			<div class="card-body">
-				<h2 class="card-title">Your Signature:</h2>
-				<p>{truncSignature}</p>
 				<p>
-					Using this signature and the message you signed I can verify if you are the right person
+					When you signed, you generated this signature. It's a unique combination of your private
+					key and the message you signed.
 				</p>
+				<h2 class="card-title">Your Signature:</h2>
+				<p class="break-words">{signature}</p>
 				<div class="card-actions justify-end">
 					<button class="btn btn-primary" on:click={nextStep}>Next</button>
 				</div>
@@ -110,25 +120,26 @@
 		</div>
 	{:else if step >= 3}
 		<div
-			class="card bg-base-100 shadow-xl"
+			class="card bg-base-100 shadow-xl max-w-xl"
 			in:fly={{ delay: 100, duration: 200, x: 100 }}
 			out:fly={{ duration: 100, x: -100 }}
 		>
 			<figure><img src="https://placeimg.com/400/225/arch" alt="Random" /></figure>
 			<div class="card-body">
-				<h2 class="card-title">Your Signature:</h2>
-				<p>{truncSignature}</p>
-				<h2 class="card-title">Expected Address:</h2>
-				<p>{expectedAddr}</p>
-				<h2 class="card-title">Random Nonce</h2>
-				<p>{nonce}</p>
 				<p>
 					Using the message and signature, I can derive the address that signed it. If it matches
 					expected you are good to go!
 				</p>
+				<h2 class="card-title">Message Signed:</h2>
+				<p>Signing one-time nonce: {nonce}</p>
+				<h2 class="card-title">Your Signature:</h2>
+				<p class="break-words">{signature}</p>
+				<h2 class="card-title">Expected Address:</h2>
+				<p>{expectedAddr}</p>
+				<h2 class="card-title">Derived Address:</h2>
+				<p>{address ? address : 'Verify Signature 👇'}</p>
 				<div class="card-actions">
 					<div class="stat">
-						<div class="stat-title">Account Verrified</div>
 						{#if valid}
 							<div class="stat-value text-primary">Valid Address</div>
 						{:else if valid !== null}

@@ -16,7 +16,7 @@
 		const chainId = await signer.getChainId();
 		const contract = '';
 		web3Props = { signer, provider, chainId, account };
-	}}
+	}
 </script>
 
 <div class="grid h-screen place-items-center">

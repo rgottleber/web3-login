@@ -88,11 +88,12 @@
 			<div class="card-body">
 				<h2 class="card-title">Random Message with Nonce</h2>
 				<p>Signing one-time nonce: {nonce}</p>
+				<p />
 				<p>
 					Using your private key, you can sign this random nonce, a one time use number. It will
 					allow you to create a single use signature which can only be created by you! The signature
-					is unique based on your private key and the data passed in. In this case the message
-					above.
+					is unique based on your private key and the data passed in. In this case the message above
+					will be what you sign.
 				</p>
 				<div class="card-actions justify-end">
 					<button class="btn btn-secondary" on:click={sign}>Sign</button>
@@ -127,7 +128,7 @@
 			<figure><img src="https://placeimg.com/400/225/arch" alt="Random" /></figure>
 			<div class="card-body">
 				<p>
-					Using the message and signature, I can derive the address that signed it. If it matches
+					Using the message and signature, I can derive the address that signed it. If it matches as
 					expected you are good to go!
 				</p>
 				<h2 class="card-title">Message Signed:</h2>

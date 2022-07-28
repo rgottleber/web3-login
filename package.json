@@ -11,6 +11,7 @@
 		"format": "prettier --write --plugin-search-dir=. ."
 	},
 	"devDependencies": {
+		"@rgottleber/wallet-connect": "^0.1.0",
 		"@sveltejs/adapter-auto": "next",
 		"@sveltejs/kit": "next",
 		"autoprefixer": "^10.4.7",
@@ -28,7 +29,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"daisyui": "^2.19.1",
-		"ethers": "^5.6.9"
+		"daisyui": "^2.19.1"
 	}
 }

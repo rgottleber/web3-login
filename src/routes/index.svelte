@@ -1,5 +1,5 @@
 <script>
-	import WalletConnect from '$lib/WalletConnect.svelte';
+	import { WalletConnect } from '@rgottleber/wallet-connect';
 	import LocalSign from '$lib/LocalSign.svelte';
 	export let web3Props = {
 		provider: null,
@@ -11,7 +11,9 @@
 </script>
 
 {#if !web3Props.account}
-	<WalletConnect bind:web3Props />
+	<div class="grid h-screen place-items-center">
+		<WalletConnect bind:web3Props />
+	</div>
 {:else}
 	<LocalSign bind:web3Props />
 {/if}
